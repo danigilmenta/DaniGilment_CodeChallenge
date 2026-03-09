@@ -61,12 +61,7 @@ public class PlayerController {
 	     return "Deleted";
 
 	 }
-	 @GetMapping("/jersey/{number}")
-	 public PlayerDto getPlayerByJerseyNumber(@PathVariable int number) {
 
-	     return service.getPlayerByJerseyNumber(number);
-
-	 }
 	
 
 }
