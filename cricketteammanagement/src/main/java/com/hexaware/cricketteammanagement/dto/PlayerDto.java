@@ -1,16 +1,36 @@
 package com.hexaware.cricketteammanagement.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
 public class PlayerDto {
 	
 
-		int playerId ;
-		String  playerName;
-		int jerseyNumber;
-		String role ;
-		int totalMatches  ;
-		String teamName ;
-		String stateName ;
-		String descriptionOfPlayer;
+	  private int playerId;
+
+	    @NotBlank(message = "Player name cannot be empty")
+	    private String playerName;
+
+	    @Min(value = 1, message = "Jersey number must be greater than 0")
+	    private int jerseyNumber;
+
+	    @NotBlank(message = "Role cannot be empty")
+	    @Pattern(regexp = "Batsman|Bowler|Allrounder|Wicketkeeper",
+	             message = "Role must be Batsman, Bowler, Allrounder or Wicketkeeper")
+	    private String role;
+
+	    @NotBlank(message = "Team name cannot be empty")
+	    private String teamName;
+
+	    @NotBlank(message = "State name cannot be empty")
+	    private String stateName;
+
+	    @NotBlank(message = "Description cannot be empty")
+	    private String descriptionOfPlayer;
+
+	    @Min(value = 0, message = "Total matches cannot be negative")
+	    private int totalMatches;
 		public PlayerDto() {
 			
 		}

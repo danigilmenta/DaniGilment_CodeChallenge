@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hexaware.cricketteammanagement.dto.PlayerDto;
 import com.hexaware.cricketteammanagement.service.IPlayerService;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +41,7 @@ public class PlayerController {
 	    }
 	 
 	 @PostMapping("/addplayer")
-	  public PlayerDto addplayer(@RequestBody   PlayerDto dto) {
+	  public PlayerDto addplayer(@Valid @RequestBody   PlayerDto dto) {
 		 
 		 return service.addPlayer(dto);
 		 
@@ -47,7 +49,7 @@ public class PlayerController {
 		 
 	 }
 	 @PutMapping("/update")
-	 public PlayerDto updatePlayer( @RequestBody PlayerDto dto) {
+	 public PlayerDto updatePlayer(@Valid @RequestBody PlayerDto dto) {
 
 	     return service.update(dto);
 
@@ -59,7 +61,12 @@ public class PlayerController {
 	     return "Deleted";
 
 	 }
-	
+	 @GetMapping("/jersey/{number}")
+	 public PlayerDto getPlayerByJerseyNumber(@PathVariable int number) {
+
+	     return service.getPlayerByJerseyNumber(number);
+
+	 }
 	
 
 }
